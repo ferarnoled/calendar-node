@@ -1,0 +1,55 @@
+/**
+ * Created by FernandoA on 4/15/2017.
+ */
+"use strict";
+const routes = require('express').Router();
+const calendarModel = require('../models/calendarModel');
+const resolve = require('path').resolve;
+
+routes.get('/eventtypes', (req,res,next) => {
+    calendarModel.getEventTypes(req.query).then(
+        function(result){
+            res.send(result);
+        },
+        function(error){
+            next(error);
+        }
+    );
+});
+/*
+routes.get('/locations', (req,res,next) => {
+    calendarModel.getLocations(req.query).then(
+        function(result){
+            res.send(result);
+        },
+        function(error){
+            next(error);
+        }
+    );
+});
+*/
+
+routes.get('/case/:caseId/calendar', (req,res,next) => {
+    console.log(req.params);
+    calendarModel.getEventsByCaseId(req.params).then(
+        function(result){
+            res.send(result);
+        },
+        function(error){
+            next(error);
+        }
+    );
+});
+
+//chat
+routes.get('/chat', (req, res, next) => {
+    //console.log();
+    res.sendFile(resolve('views/index.html'));
+})
+
+routes.get('/chat/sendbird', (req, res, next) => {
+    //console.log();
+    res.sendFile(resolve('views/sendbird/index.html'));
+})
+
+module.exports = routes;

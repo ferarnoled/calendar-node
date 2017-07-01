@@ -1,0 +1,31 @@
+{
+  "name": "outpatient-main",
+  "version": "1.0.0",
+  "description": "Outpatient main service. TBD",
+  "main": "www/www.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/start.js"
+  },
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "express": "^4.14.0",
+    "json-inflector": "^1.1.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "request": "^2.75.0",
+    "knex": "^0.12.0",
+    "socket.io": "^2.0.3",
+    "pg": "^6.4.0",
+    "winston": "^2.2.0",
+    "moment": "^2.18.1"
+  },
+  "author": "",
+  "license": "ISC"
+}
