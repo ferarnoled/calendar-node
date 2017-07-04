@@ -1,4 +1,4 @@
-var winston = require('winston');
+    var winston = require('winston');
 //var MongoDB = require('winston-mongodb').MongoDB;
 var fs = require('fs');
 const config = require('../config/config.json')[process.env.NODE_ENV || 'dev'];
@@ -42,6 +42,7 @@ var logger = new winston.Logger({
     exitOnError: false
 });
 
+
 logger.setUp = function(serviceName, productName, mongoCollection = 'logs', logPath = config.logDir) {
     //create log Path if it does not exist
     if (!fs.existsSync(logPath)) {
@@ -51,6 +52,8 @@ logger.setUp = function(serviceName, productName, mongoCollection = 'logs', logP
     
     service = serviceName.toLocaleUpperCase();
     product = productName.toLocaleUpperCase();
+
+    console.log(logPath + '/' + service + '_' + product + '_' + 'exceptions.log');
 
     logger.add (winston.transports.File, {
         name: 'error-file',
@@ -62,6 +65,8 @@ logger.setUp = function(serviceName, productName, mongoCollection = 'logs', logP
         colorize: false,
         formatter: customErrorFormatter
     });
+
+    console.log(logPath + '/' + service + '_' + product + '_' + 'info.log');
 
     logger.add (winston.transports.File, {
         name: 'info-file',

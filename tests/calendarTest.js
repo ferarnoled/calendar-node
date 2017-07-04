@@ -33,4 +33,24 @@ if (testGet) {
             console.log('Error:' + error);
         }
     );
+/*
+    var event = [
+        {"eventId":"1"
+            ,"eventName":"Event 2"
+            ,"eventTypeName":"Physical Therapy"
+            ,"location": {
+            "locationName": "Peet' Coffe"
+            , "address": "123 Main Street, Los Altos, CA 94022"
+            , "phone": null
+            , "latitude": "37.4738000"
+            , "longitude": "-122.1916327"
+        }
+        ,"startDate":"2017-06-30T21:00:06.000Z"
+        ,"endDate":"2017-06-30T22:00:06.000Z"
+            ,"repeatRule":null
+            ,"repeatEnds":null
+            ,"reminder":null
+            ,"notes":"My notes"}];
+    calendarModel.saveEvent(event);
+    */
 }

@@ -16,14 +16,25 @@ class CalendarModel {
         return calendarRepo.getEventTypes();
     }
 
+    saveEvent(event, caseId) {
+        return calendarRepo.saveEvent(event, caseId);
+    }
+
+    getEventByEventId(eventId){
+        return calendarRepo.getEventByEventId(false, eventId)
+            .then(function (result) {
+                return _this.mapEvent(result);
+            });
+    }
+
     getEventsByCaseId(param){
-        return calendarRepo.getEventsByCaseId(param.caseId)
+        return calendarRepo.getEventsByCaseOrEventId(true, param.caseId)
                 .then(function (result) {
                     return _this.mapEvent(result);
                 });
     }
 
-    mapEvent(items) {
+    mapEvent(items, list = true) {
         return new Promise((resolve, reject) => {
             try {
                 if (!items || items.length < 1 || !items[0]) return resolve(null);
@@ -38,25 +49,28 @@ class CalendarModel {
                             address: dbEvent.address,
                             phone: dbEvent.phone,
                             latitude: dbEvent.latitude,
-                            longitude: dbEvent.longitude,
-                            startDate: dbEvent.start_date,
-                            endDate: dbEvent.end_date,
-                            repeatRule: dbEvent.repeat_rule_id,
-                            repeatEnds: dbEvent.repeat_ends,
-                            reminder: dbEvent.reminder_id
+                            longitude: dbEvent.longitude
                         },
-                        transportation: dbEvent.tranportation_name,
+                        allDay: dbEvent.all_day,
+                        startDate: dbEvent.start_date,
+                        endDate: dbEvent.end_date,
+                        repeatRule: dbEvent.repeat_rule_id,
+                        repeatEnds: dbEvent.repeat_ends,
+                        reminder: dbEvent.reminder_id,
+                        transportation: dbEvent.tranportation_name !== undefined ? dbEvent.tranportation_name : null,
                         notes: dbEvent.notes
                     };
                     return event;
                 });
-                resolve(events);
+                if (list)
+                    resolve(events);
+                else
+                    resolve(events[0]);
             }
             catch (ex) {
                 reject(ex);
             }
         });
-        return dbEvent;
     }
 }
 module.exports = new CalendarModel();

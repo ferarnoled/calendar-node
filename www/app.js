@@ -31,19 +31,19 @@ class App {
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({extended: true}));
         app.use(cookieParser());
-        console.log(path.resolve(__dirname, '../views'));
+        //console.log(path.resolve(__dirname, '../views'));
         //app.use(express.static(path.join(__dirname, 'views')));
         app.use(express.static(path.resolve(__dirname, '../views/sendbird')));
         app.use(cors());
 
         let options =
         {
-            request: startOptions.camelize || 'underscore',
+            //request: startOptions.camelize || 'underscore',
             response: 'camelizeLower'
         };
         app.use(inflector(options));
         
-        winstonLogger.setUp(process.title, process.env.PRODUCT = 'outpatient-main');
+        winstonLogger.setUp(process.title, process.env.PRODUCT = 'outpatient-api');
 
         // Connect all our routes to our application
         app.use('/', startOptions.routes);

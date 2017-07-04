@@ -7,7 +7,7 @@
     "port": 5432,
     "dialect": "postgres",
     "devconst": "dev",
-    "logDir" : "/var/log",
+    "logDir" : "../var/log",
     "debug": 1
   },
   "qa": {

@@ -16,6 +16,8 @@ routes.get('/eventtypes', (req,res,next) => {
         }
     );
 });
+
+
 /*
 routes.get('/locations', (req,res,next) => {
     calendarModel.getLocations(req.query).then(
@@ -29,13 +31,36 @@ routes.get('/locations', (req,res,next) => {
 });
 */
 
-routes.get('/case/:caseId/calendar', (req,res,next) => {
+// CALENDAR
+routes.get('/cases/:caseId/events/:eventId', (req,res,next) => {
+    calendarModel.getEventsByCaseId(req.params.eventId).then(
+        function(result){
+            res.send(result);
+        },
+        function(error){
+            next(error);
+        }
+    );
+});
+
+routes.get('/cases/:caseId/events', (req,res,next) => {
     console.log(req.params);
     calendarModel.getEventsByCaseId(req.params).then(
         function(result){
             res.send(result);
         },
         function(error){
+            next(error);
+        }
+    );
+});
+
+routes.post('/cases/:caseId/events', (req, res, next) => {
+    calendarModel.saveEvent(req.body, req.params.caseId).then(
+        function(result) {
+            res.send(result);
+        },
+        function(error) {
             next(error);
         }
     );
