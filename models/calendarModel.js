@@ -17,7 +17,26 @@ class CalendarModel {
     }
 
     saveEvent(event, caseId) {
-        return calendarRepo.saveEvent(event, caseId);
+        return calendarRepo.upsertEvent(event, caseId, true);
+    }
+
+    updateEvent(event, caseId, eventId) {
+        event.event_id = eventId;
+        return calendarRepo.upsertEvent(event, caseId, false);
+    }
+
+    deleteEvent(eventId) {
+        return calendarRepo.deleteEvent(eventId).then((rows) => {
+            return new Promise((resolve, reject) => {
+                try {
+                    resolve("rows affected: " + rows);
+                }
+                catch (ex) {
+                    reject(ex);
+                }
+            });
+        });
+        //return calendarRepo.deleteEvent(eventId);
     }
 
     getEventByEventId(eventId){

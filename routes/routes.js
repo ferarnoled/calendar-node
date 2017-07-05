@@ -66,6 +66,28 @@ routes.post('/cases/:caseId/events', (req, res, next) => {
     );
 });
 
+routes.put('/cases/:caseId/events/:eventId', (req, res, next) => {
+    calendarModel.updateEvent(req.body, req.params.caseId, req.params.eventId).then(
+        function(result) {
+            res.send(result);
+        },
+        function(error) {
+            next(error);
+        }
+    );
+});
+
+routes.delete('/cases/:caseId/events/:eventId', (req, res, next) => {
+    calendarModel.deleteEvent(req.params.eventId).then(
+        function(result) {
+            res.send(result);
+        },
+        function(error) {
+            next(error);
+        }
+    );
+});
+
 //chat
 routes.get('/chat', (req, res, next) => {
     //console.log();
