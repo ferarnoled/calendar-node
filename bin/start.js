@@ -4,8 +4,8 @@
 
 let routes = require('../routes/routes');
 
-require('../www/WWW').start({
-    port: '3040',
+require('../www/www').start({
+    port: '3050',
     serviceName: 'outpatient-main',
     routes: routes
 });
