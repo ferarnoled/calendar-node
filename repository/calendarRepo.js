@@ -42,8 +42,8 @@ class CalendarRepo {
     upsertEvent(event, caseId, isInsert = true) {
         return _this.queriesBeforeUpsertEvent(event)
                 .then(item => {
-                    console.log("item:" + JSON.stringify(item, null, 4));
                     // 1) after doing the queries assign the values to complete the event object.
+                    console.log("item:" + JSON.stringify(item, null, 4));
                     if (item && item.length >= 1 && item[0] && item[0].length > 0)
                         event.location.location_id = item[0][0].location_id;
                     if (item.length >= 2 && item[1] && item[1].length > 0)
@@ -51,51 +51,41 @@ class CalendarRepo {
                     if (item.length >= 3 && item[2] && item[2].length > 0)
                         event.transportation_id = item[2] ? item[2].transportation_id : null;
                     //2) Validations
+                    /*
                     if (event.event_type_id === undefined)
                         throw "The event type does not exist.";
+                    */
+                    console.log(event.event_type_id );
                     //3) Open transaction
                     return knex.transaction(function (trx) {
-                        let promise;
-                        //4) Insert location row if the location doesn't exists
-                        if (event.location.location_id === null || event.location.location_id === undefined) {
-                            promise = knex('locations').transacting(trx)
-                                .returning('location_id').insert({
-                                address: event.location.address,
-                                name: event.location.location_name,
-                                latitude: event.location.latitude,
-                                longitude: event.location.longitude,
-                                phone: event.location.phone
-                            }).then(function(resp) {
-                                return resp[0];
-                            });
-                        }
-                        else {
-                            promise = Promise.resolve(event.location.location_id);
-                        }
-                        //5) Last step insert the event.
-                        promise.then(function (locationId) {
-                            //console.log("event insert:" + JSON.stringify(event, null, 4));
+                        //4) Insert event_type if not exists, insert location if not exists
+                        Promise.all([_this.insertEventTypeIfNew(event, trx)
+                            , _this.insertLocationIfNew(event, trx)]).then(result => {
+                                //console.log("result:" + JSON.stringify(result, null, 4));
+                                event.event_type_id = result[0];
+                                event.location.location_id = result[1];
+
+                            //5) Last step insert the event.
                             if (isInsert) {
-                                    knex('cal.events').transacting(trx)
+                                knex('cal.events').transacting(trx)
                                     .returning('event_id').insert(
-                                        {
-                                            name: event.event_name
-                                            , case_id: caseId
-                                            , event_type_id: event.event_type_id
-                                            , start_date: event.start_date
-                                            , end_date: event.end_date
-                                            , all_day: event.all_day
-                                            , location_id: locationId
-                                            , notes: event.notes
-                                            , transportation_id: event.transportaion_id
-                                            , repeat_rule_id: event.repeat_rule
-                                            , repeat_ends: event.repeate_ends
-                                            , reminder_id: event.reminder
-                                        }
-                                    )
+                                    {
+                                        name: event.event_name
+                                        , case_id: caseId
+                                        , event_type_id: event.event_type_id
+                                        , start_date: event.start_date
+                                        , end_date: event.end_date
+                                        , all_day: event.all_day
+                                        , location_id: event.location.location_id
+                                        , notes: event.notes
+                                        , transportation_id: event.transportaion_id
+                                        , repeat_rule_id: event.repeat_rule
+                                        , repeat_ends: event.repeate_ends
+                                        , reminder_id: event.reminder
+                                    }
+                                )
                                     .then(function(resp) {
-                                        var eventId = resp[0];
-                                        return eventId;
+                                        return resp[0];
                                     })
                                     .then(trx.commit)
                                     .catch(trx.rollback);
@@ -111,7 +101,7 @@ class CalendarRepo {
                                             , start_date: event.start_date
                                             , end_date: event.end_date
                                             , all_day: event.all_day
-                                            , location_id: locationId
+                                            , location_id: event.location.location_id
                                             , notes: event.notes
                                             , transportation_id: event.transportaion_id
                                             , repeat_rule_id: event.repeat_rule
@@ -125,7 +115,7 @@ class CalendarRepo {
                                     .then(trx.commit)
                                     .catch(trx.rollback);
                             }
-                        })
+                        });
                     });
                     /*
                     .then(function (resp) {
@@ -160,6 +150,43 @@ class CalendarRepo {
         return knex('cal.transportations').where({
             name: event.transportation_name
         }).select('transportation_id');
+    }
+
+    insertEventTypeIfNew(event, trx) {
+        let promise;
+        if (event.event_type_id === null || event.event_type_id === undefined) {
+            promise = knex('cal.event_types').transacting(trx)
+                .returning('event_type_id').insert({
+                    name: event.event_type_name
+                }).then(function(resp) {
+                    return resp[0];
+                });
+        }
+        else {
+            console.log("insertEventTypeIfNew:" + event.event_type_id);
+            promise = Promise.resolve(event.event_type_id);
+        }
+        return promise;
+    }
+
+    insertLocationIfNew(event, trx) {
+        let promise;
+        if (event.location.location_id === null || event.location.location_id === undefined) {
+            promise = knex('locations').transacting(trx)
+                .returning('location_id').insert({
+                    address: event.location.address,
+                    name: event.location.location_name,
+                    latitude: event.location.latitude,
+                    longitude: event.location.longitude,
+                    phone: event.location.phone
+                }).then(function(resp) {
+                    return resp[0];
+                });
+        }
+        else {
+            promise = Promise.resolve(event.location.location_id);
+        }
+        return promise;
     }
 }
 

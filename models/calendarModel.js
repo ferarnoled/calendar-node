@@ -29,7 +29,7 @@ class CalendarModel {
         return calendarRepo.deleteEvent(eventId).then((rows) => {
             return new Promise((resolve, reject) => {
                 try {
-                    resolve("rows affected: " + rows);
+                    resolve(rows.toString());
                 }
                 catch (ex) {
                     reject(ex);
