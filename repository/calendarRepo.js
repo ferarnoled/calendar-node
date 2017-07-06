@@ -157,13 +157,14 @@ class CalendarRepo {
         if (event.event_type_id === null || event.event_type_id === undefined) {
             promise = knex('cal.event_types').transacting(trx)
                 .returning('event_type_id').insert({
-                    name: event.event_type_name
+                    name: event.event_type_name,
+                    is_active: '1'
                 }).then(function(resp) {
                     return resp[0];
                 });
         }
         else {
-            console.log("insertEventTypeIfNew:" + event.event_type_id);
+            //console.log("insertEventTypeIfNew:" + event.event_type_id);
             promise = Promise.resolve(event.event_type_id);
         }
         return promise;

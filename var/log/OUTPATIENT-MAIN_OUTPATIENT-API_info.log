@@ -1,0 +1,6 @@
+2017-07-06T23:03:07.317Z [ERROR]  
+2017-07-06T23:03:07.317Z [ERROR]  insert into "cal"."event_types" ("name") values ($1) returning "event_type_id" - null value in column "event_type_id" violates not-null constraint
+2017-07-06T23:03:07.318Z [ERROR]  Uncaught Exception
+2017-07-06T23:03:49.209Z [ERROR]  
+2017-07-06T23:03:49.210Z [ERROR]  insert into "cal"."event_types" ("name") values ($1) returning "event_type_id" - null value in column "event_type_id" violates not-null constraint
+2017-07-06T23:03:49.211Z [ERROR]  Uncaught Exception
