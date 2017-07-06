@@ -40,7 +40,7 @@ class CalendarModel {
     }
 
     getEventByEventId(eventId){
-        return calendarRepo.getEventByEventId(false, eventId)
+        return calendarRepo.getEventsByCaseOrEventId(false, eventId)
             .then(function (result) {
                 return _this.mapEvent(result);
             });
