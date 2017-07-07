@@ -33,7 +33,7 @@ routes.get('/locations', (req,res,next) => {
 
 // CALENDAR
 routes.get('/cases/:caseId/events/:eventId', (req,res,next) => {
-    calendarModel.getEventsByCaseId(req.params.eventId).then(
+    calendarModel.getEventByEventId(req.params.eventId).then(
         function(result){
             res.send(result);
         },
