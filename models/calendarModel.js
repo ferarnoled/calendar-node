@@ -17,12 +17,32 @@ class CalendarModel {
     }
 
     saveEvent(event, caseId) {
-        return calendarRepo.upsertEvent(event, caseId, true);
+        return calendarRepo.upsertEvent(event, caseId, true).then((rows) => {
+            return new Promise((resolve, reject) => {
+                try {
+                    //Need to convert number to string because express doesn't accept an int as a response
+                    resolve(rows.toString());
+                }
+                catch (ex) {
+                    reject(ex);
+                }
+            });
+        });
     }
 
     updateEvent(event, caseId, eventId) {
         event.event_id = eventId;
-        return calendarRepo.upsertEvent(event, caseId, false);
+        return calendarRepo.upsertEvent(event, caseId, false).then((rows) => {
+            return new Promise((resolve, reject) => {
+                try {
+                    //Need to convert number to string because express doesn't accept an int as a response
+                    resolve(rows.toString());
+                }
+                catch (ex) {
+                    reject(ex);
+                }
+            });
+        });
     }
 
     deleteEvent(eventId) {
@@ -36,7 +56,6 @@ class CalendarModel {
                 }
             });
         });
-        //return calendarRepo.deleteEvent(eventId);
     }
 
     getEventByEventId(eventId){
@@ -60,6 +79,8 @@ class CalendarModel {
                 var dbEvent = items[0];
                 var events = items.map((dbEvent) => {
                     var event = {
+                        //Currently int. Might need to be converted to bigInt in the future (be careful: javascript can't
+                        // handle bigint natively)
                         eventId: dbEvent.event_id,
                         eventName: dbEvent.event_name,
                         eventTypeName: dbEvent.event_type_name,
@@ -73,18 +94,18 @@ class CalendarModel {
                         allDay: dbEvent.all_day,
                         startDate: dbEvent.start_date,
                         endDate: dbEvent.end_date,
-                        repeatRule: dbEvent.repeat_rule_id,
-                        repeatEnds: dbEvent.repeat_ends,
-                        reminder: dbEvent.reminder_id,
+                        repeat: {
+                            frequency: dbEvent.ios_repeat_frequency_id,
+                            interval: dbEvent.ios_repeat_interval_id,
+                            endDate: dbEvent.ios_repeat_end_date
+                        },
+                        reminder: dbEvent.io_reminder_id,
                         transportation: dbEvent.tranportation_name !== undefined ? dbEvent.tranportation_name : null,
                         notes: dbEvent.notes
                     };
                     return event;
                 });
-                if (list)
-                    resolve(events);
-                else
-                    resolve(events[0]);
+                return list ? resolve(events) : resolve(events[0]);
             }
             catch (ex) {
                 reject(ex);

@@ -29,8 +29,8 @@ class CalendarRepo {
             .where(byCaseId ? 'case_id' : 'event_id', paramId)
             .select('event_id', 'e.name as event_name', 'ee.name as event_type_name'
                     , 'l.location_id', 'l.name as location_name', 'l.address', 'l.phone', 'l.latitude', 'l.longitude'
-                    , 'start_date', 'end_date', 'repeat_rule_id', 'repeat_ends', 'reminder_id'
-                    , 't.name as transportation_name', 'notes');
+                    , 'start_date', 'end_date', 'e.ios_repeat_interval_id', 'e.ios_repeat_end_date', 'e.ios_repeat_frequency_id'
+                    , 'e.ios_reminder_id', 't.name as transportation_name', 'notes');
     }
 
     queriesBeforeUpsertEvent(event) {
@@ -79,9 +79,10 @@ class CalendarRepo {
                                         , location_id: event.location.location_id
                                         , notes: event.notes
                                         , transportation_id: event.transportaion_id
-                                        , repeat_rule_id: event.repeat_rule
-                                        , repeat_ends: event.repeate_ends
-                                        , reminder_id: event.reminder
+                                        , ios_repeat_interval_id: event.repeat.interval
+                                        , ios_repeat_frequency_id: event.repeat.frequency
+                                        , ios_repeat_end_date: event.repeat.end_date
+                                        , ios_reminder_id: event.reminder
                                     }
                                 )
                                     .then(function(resp) {
@@ -104,9 +105,10 @@ class CalendarRepo {
                                             , location_id: event.location.location_id
                                             , notes: event.notes
                                             , transportation_id: event.transportaion_id
-                                            , repeat_rule_id: event.repeat_rule
-                                            , repeat_ends: event.repeate_ends
-                                            , reminder_id: event.reminder
+                                            , ios_repeat_interval_id: event.repeat.interval
+                                            , ios_repeat_frequency_id: event.repeat.frequency
+                                            , ios_repeat_end_date: event.repeat.end_date
+                                            , ios_reminder_id: event.reminder
                                         }
                                     )
                                     .then(function() {
@@ -148,7 +150,7 @@ class CalendarRepo {
 
     getTransportationId(event) {
         return knex('cal.transportations').where({
-            name: event.transportation_name
+            name: event.transportation
         }).select('transportation_id');
     }
 
