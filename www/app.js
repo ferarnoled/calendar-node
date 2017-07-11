@@ -58,8 +58,7 @@ class App {
 
         // error handlers
         app.use(function (err, req, res, next) {
-            console.log(process.env.NODE_ENV);
-            console.log("app.get('env'):" + app.get('env'));
+            console.log("app.js: " + JSON.stringify(err, null, 4));
             if (app.get('env') !== 'development') {
                 winstonLogger.error(err, err.parent, req);
                 // production error handler

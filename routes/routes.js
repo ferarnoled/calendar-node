@@ -102,6 +102,7 @@ function genericResponse(isError, result) {
         error: isError ? result: null,
         data: !isError ? result: null
     }
+    console.log("genericResponse:" + JSON.stringify(ret, null, 4));
     return ret;
 }
 
