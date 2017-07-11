@@ -58,7 +58,6 @@ class App {
 
         // error handlers
         app.use(function (err, req, res, next) {
-            console.log("app.js: " + JSON.stringify(err, null, 4));
             if (app.get('env') !== 'development') {
                 winstonLogger.error(err, err.parent, req);
                 // production error handler

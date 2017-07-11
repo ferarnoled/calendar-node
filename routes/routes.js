@@ -55,11 +55,10 @@ routes.get('/cases/:caseId/events', (req,res,next) => {
 });
 
 routes.post('/cases/:caseId/events', (req, res, next) => {
-    /*
     return resolveReturnPromise(
         calendarModel.saveEvent(req.body, req.params.caseId)
         , req,res,next);
-       */
+    /*
     calendarModel.saveEvent(req.body, req.params.caseId).then(
         function(result) {
             res.send(result);
@@ -68,6 +67,7 @@ routes.post('/cases/:caseId/events', (req, res, next) => {
             next(error);
         }
     );
+    */
 });
 
 routes.put('/cases/:caseId/events/:eventId', (req, res, next) => {
@@ -102,7 +102,6 @@ function genericResponse(isError, result) {
         error: isError ? result: null,
         data: !isError ? result: null
     }
-    console.log("genericResponse:" + JSON.stringify(ret, null, 4));
     return ret;
 }
 
