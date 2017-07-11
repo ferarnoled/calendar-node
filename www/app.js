@@ -66,8 +66,9 @@ class App {
                 res.status(err.status || 500).json();
             }
             else {
-                res.status(err.status || 500).json(err);
                 winstonLogger.error(err);
+
+                res.status(err.status || 500).json(err);
             }
         });
 

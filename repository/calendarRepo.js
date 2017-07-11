@@ -73,6 +73,7 @@ class CalendarRepo {
                         event.event_type_id = item[1][0].event_type_id;
                     if (item.length >= 3 && item[2] && item[2].length > 0)
                         event.transportation_id = item[2] ? item[2].transportation_id : null;
+                    console.log("upsertEvent: queries done.");
                     //2) Validations
                     /*
                     if (event.event_type_id === undefined)
