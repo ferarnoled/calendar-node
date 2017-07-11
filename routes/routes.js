@@ -55,10 +55,11 @@ routes.get('/cases/:caseId/events', (req,res,next) => {
 });
 
 routes.post('/cases/:caseId/events', (req, res, next) => {
+    /*
     return resolveReturnPromise(
         calendarModel.saveEvent(req.body, req.params.caseId)
         , req,res,next);
-    /*
+       */
     calendarModel.saveEvent(req.body, req.params.caseId).then(
         function(result) {
             res.send(result);
@@ -67,7 +68,6 @@ routes.post('/cases/:caseId/events', (req, res, next) => {
             next(error);
         }
     );
-    */
 });
 
 routes.put('/cases/:caseId/events/:eventId', (req, res, next) => {
