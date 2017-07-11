@@ -20,6 +20,13 @@ class CalendarRepo {
         return knex.withSchema("cal").select('*').from('event_types').timeout(1000);
     }
 
+    /**
+     * Select query that returns all event columns needed to create the event object.
+     * Might return one or more events
+     * @param {boolean} byCaseId if the query is based on caseId (many) or eventId (one)
+     * @param {number} paramId numberic identifier, either caseId or eventId
+     * @returns {*|void|{get, set}} knex promise with the recorset.
+     */
     getEventsByCaseOrEventId(byCaseId, paramId) {
         return knex('cal.events as e')
             //.withSchema("cal")
@@ -30,20 +37,36 @@ class CalendarRepo {
             .select('event_id', 'e.name as event_name', 'ee.name as event_type_name'
                     , 'l.location_id', 'l.name as location_name', 'l.address', 'l.phone', 'l.latitude', 'l.longitude'
                     , 'start_date', 'end_date', 'e.ios_repeat_interval_id', 'e.ios_repeat_end_date', 'e.ios_repeat_frequency_id'
-                    , 'e.ios_reminder_id', 't.name as transportation_name', 'notes');
+                    , 'e.ios_reminder_id', 't.name as transportation_name', 'notes', 'all_day');
     }
 
+    /**
+     * Queries used to verify current data before doing the upsert
+     * @param event
+     * @returns {Promise.<*>}
+     */
     queriesBeforeUpsertEvent(event) {
         return Promise.all([_this.getLocationId(event.location)
                             , _this.getEventTypeId(event)
                             , _this.getTransportationId(event)]);
     }
 
+    /**
+     * Upsert method for the event:
+     * 1) Perform queries to know the current status of the object in the DB.
+     * 2) Do inserts of objects that depend on the event. This is for event_types and locations tables.
+     * 3) Do the insert or update based on who called the function.
+     * 4) Commit if ok, rollback if error. Return promise.
+     * @param event
+     * @param caseId
+     * @param isInsert
+     * @returns {Promise.<TResult>}
+     */
     upsertEvent(event, caseId, isInsert = true) {
         return _this.queriesBeforeUpsertEvent(event)
                 .then(item => {
                     // 1) after doing the queries assign the values to complete the event object.
-                    console.log("item:" + JSON.stringify(item, null, 4));
+                    //console.log("item:" + JSON.stringify(item, null, 4));
                     if (item && item.length >= 1 && item[0] && item[0].length > 0)
                         event.location.location_id = item[0][0].location_id;
                     if (item.length >= 2 && item[1] && item[1].length > 0)
@@ -55,7 +78,6 @@ class CalendarRepo {
                     if (event.event_type_id === undefined)
                         throw "The event type does not exist.";
                     */
-                    console.log(event.event_type_id );
                     //3) Open transaction
                     return knex.transaction(function (trx) {
                         //4) Insert event_type if not exists, insert location if not exists
@@ -154,6 +176,13 @@ class CalendarRepo {
         }).select('transportation_id');
     }
 
+    /**
+     * Inserts an eventType to the DB if the event_type is new, otherwise it doesn't do anything
+     * and returns the promise. Insert is depends on next steps (see trx).
+     * @param event event object
+     * @param trx transaction opened in upsertEvent. Will commit in another step
+     * @returns {*} promise with the event_type_id
+     */
     insertEventTypeIfNew(event, trx) {
         let promise;
         if (event.event_type_id === null || event.event_type_id === undefined) {
@@ -172,6 +201,13 @@ class CalendarRepo {
         return promise;
     }
 
+    /**
+     * Inserts a location to the DB if the location is new, otherwise it doesn't do anything
+     * and returns the promise. Insert depends on next steps from calling function.
+     * @param event event object
+     * @param trx transaction opened in upsertEvent. Will commit in another step
+     * @returns {*} promise with the location_id
+     */
     insertLocationIfNew(event, trx) {
         let promise;
         if (event.location.location_id === null || event.location.location_id === undefined) {

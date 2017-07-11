@@ -4,6 +4,7 @@
 "use strict"
 
 const calendarRepo = require('../repository/calendarRepo');
+//let check = require('validator').check();
 
 let _this = null;
 
@@ -16,6 +17,12 @@ class CalendarModel {
         return calendarRepo.getEventTypes();
     }
 
+    /**
+     * Saves a new event (calendar) to the DB.
+     * @param {Event} event Event object to be saved
+     * @param {number} caseId caseId coming from the URL querystring
+     * @returns {Promise.<TResult>|*} TBD
+     */
     saveEvent(event, caseId) {
         return calendarRepo.upsertEvent(event, caseId, true).then((rows) => {
             return new Promise((resolve, reject) => {
@@ -30,7 +37,25 @@ class CalendarModel {
         });
     }
 
+    /**
+     * Updates an event to the DB based on the eventId
+     * @param {Object} event Event object to be updated
+     * @param {number} caseId caseId of the event.
+     * @param {number} eventId EventId used to do the update.
+     * @returns {Promise.<TResult>|*} TBD
+     */
     updateEvent(event, caseId, eventId) {
+        /*
+        try {
+            check('test@email.com').len(6, 64).isEmail();       //Methods are chainable
+            check(event.all_day, "allDay field should be boolean").isBoolean();                               //Throws 'Invalid integer'
+            check(event.startDate, 'statDate field should be a Date').isInt();      //Throws 'Please enter a number'
+            check('abcdefghijklmnopzrtsuvqxyz').is(/^[a-z]+$/);
+        }
+        catch (ex) {
+
+        }
+        */
         event.event_id = eventId;
         return calendarRepo.upsertEvent(event, caseId, false).then((rows) => {
             return new Promise((resolve, reject) => {
@@ -45,6 +70,11 @@ class CalendarModel {
         });
     }
 
+    /**
+     * Deletes and event based on the eventID
+     * @param {number} eventId used to do the delete.
+     * @returns {Promise.<TResult>|*}
+     */
     deleteEvent(eventId) {
         return calendarRepo.deleteEvent(eventId).then((rows) => {
             return new Promise((resolve, reject) => {
@@ -61,7 +91,7 @@ class CalendarModel {
     getEventByEventId(eventId){
         return calendarRepo.getEventsByCaseOrEventId(false, eventId)
             .then(function (result) {
-                return _this.mapEvent(result);
+                return _this.mapEvent(result, false);
             });
     }
 
@@ -72,6 +102,12 @@ class CalendarModel {
                 });
     }
 
+    /**
+     * Based on event or events query to the DB it maps to DTOs
+     * @param items If is a list array of event objects, if is for not one Event object
+     * @param list Indicates if the calling functions requiers an array or not.
+     * @returns {Promise} Promise to be resolved higher in the stack.
+     */
     mapEvent(items, list = true) {
         return new Promise((resolve, reject) => {
             try {
@@ -99,7 +135,7 @@ class CalendarModel {
                             interval: dbEvent.ios_repeat_interval_id,
                             endDate: dbEvent.ios_repeat_end_date
                         },
-                        reminder: dbEvent.io_reminder_id,
+                        reminder: dbEvent.ios_reminder_id,
                         transportation: dbEvent.tranportation_name !== undefined ? dbEvent.tranportation_name : null,
                         notes: dbEvent.notes
                     };

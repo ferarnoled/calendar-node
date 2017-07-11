@@ -1,0 +1,428 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@3.10.8
+3 info using node@v6.9.1
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchNamedPackageData chai
+20 silly mapToRegistry name chai
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry data Result {
+23 silly mapToRegistry   raw: 'chai',
+23 silly mapToRegistry   scope: null,
+23 silly mapToRegistry   escapedName: 'chai',
+23 silly mapToRegistry   name: 'chai',
+23 silly mapToRegistry   rawSpec: '',
+23 silly mapToRegistry   spec: 'latest',
+23 silly mapToRegistry   type: 'tag' }
+24 silly mapToRegistry uri https://registry.npmjs.org/chai
+25 silly fetchNamedPackageData chai-http
+26 silly mapToRegistry name chai-http
+27 silly mapToRegistry using default registry
+28 silly mapToRegistry registry https://registry.npmjs.org/
+29 silly mapToRegistry data Result {
+29 silly mapToRegistry   raw: 'chai-http',
+29 silly mapToRegistry   scope: null,
+29 silly mapToRegistry   escapedName: 'chai-http',
+29 silly mapToRegistry   name: 'chai-http',
+29 silly mapToRegistry   rawSpec: '',
+29 silly mapToRegistry   spec: 'latest',
+29 silly mapToRegistry   type: 'tag' }
+30 silly mapToRegistry uri https://registry.npmjs.org/chai-http
+31 silly fetchNamedPackageData chai-as-promise
+32 silly mapToRegistry name chai-as-promise
+33 silly mapToRegistry using default registry
+34 silly mapToRegistry registry https://registry.npmjs.org/
+35 silly mapToRegistry data Result {
+35 silly mapToRegistry   raw: 'chai-as-promise',
+35 silly mapToRegistry   scope: null,
+35 silly mapToRegistry   escapedName: 'chai-as-promise',
+35 silly mapToRegistry   name: 'chai-as-promise',
+35 silly mapToRegistry   rawSpec: '',
+35 silly mapToRegistry   spec: 'latest',
+35 silly mapToRegistry   type: 'tag' }
+36 silly mapToRegistry uri https://registry.npmjs.org/chai-as-promise
+37 verbose request uri https://registry.npmjs.org/chai-http
+38 verbose request no auth needed
+39 info attempt registry request try #1 at 11:14:07 AM
+40 verbose request id 6f2dd79dbe9a78e4
+41 http request GET https://registry.npmjs.org/chai-http
+42 verbose request uri https://registry.npmjs.org/chai-as-promise
+43 verbose request no auth needed
+44 info attempt registry request try #1 at 11:14:07 AM
+45 http request GET https://registry.npmjs.org/chai-as-promise
+46 verbose request uri https://registry.npmjs.org/chai
+47 verbose request no auth needed
+48 info attempt registry request try #1 at 11:14:07 AM
+49 verbose etag W/"584cf1a8-164e5"
+50 verbose lastModified Sun, 11 Dec 2016 06:26:48 GMT
+51 http request GET https://registry.npmjs.org/chai
+52 http 200 https://registry.npmjs.org/chai-http
+53 verbose headers { server: 'nginx/1.10.3',
+53 verbose headers   'content-type': 'application/json',
+53 verbose headers   'last-modified': 'Mon, 12 Jun 2017 19:27:23 GMT',
+53 verbose headers   etag: 'W/"593eeb1b-5d26"',
+53 verbose headers   'content-encoding': 'gzip',
+53 verbose headers   'cache-control': 'max-age=300',
+53 verbose headers   'content-length': '6122',
+53 verbose headers   'accept-ranges': 'bytes',
+53 verbose headers   date: 'Mon, 10 Jul 2017 18:14:05 GMT',
+53 verbose headers   via: '1.1 varnish',
+53 verbose headers   age: '7',
+53 verbose headers   connection: 'keep-alive',
+53 verbose headers   'x-served-by': 'cache-sjc3643-SJC',
+53 verbose headers   'x-cache': 'HIT',
+53 verbose headers   'x-cache-hits': '1',
+53 verbose headers   'x-timer': 'S1499710445.353023,VS0,VE1',
+53 verbose headers   vary: 'Accept-Encoding, Accept' }
+54 silly get cb [ 200,
+54 silly get   { server: 'nginx/1.10.3',
+54 silly get     'content-type': 'application/json',
+54 silly get     'last-modified': 'Mon, 12 Jun 2017 19:27:23 GMT',
+54 silly get     etag: 'W/"593eeb1b-5d26"',
+54 silly get     'content-encoding': 'gzip',
+54 silly get     'cache-control': 'max-age=300',
+54 silly get     'content-length': '6122',
+54 silly get     'accept-ranges': 'bytes',
+54 silly get     date: 'Mon, 10 Jul 2017 18:14:05 GMT',
+54 silly get     via: '1.1 varnish',
+54 silly get     age: '7',
+54 silly get     connection: 'keep-alive',
+54 silly get     'x-served-by': 'cache-sjc3643-SJC',
+54 silly get     'x-cache': 'HIT',
+54 silly get     'x-cache-hits': '1',
+54 silly get     'x-timer': 'S1499710445.353023,VS0,VE1',
+54 silly get     vary: 'Accept-Encoding, Accept' } ]
+55 verbose get saving chai-http to C:\Users\FernandoA\AppData\Roaming\npm-cache\registry.npmjs.org\chai-http\.cache.json
+56 verbose correctMkdir C:\Users\FernandoA\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+57 silly resolveWithNewModule chai-http@3.0.0 checking installable status
+58 silly cache add args [ 'chai-http@^3.0.0', null ]
+59 verbose cache add spec chai-http@^3.0.0
+60 silly cache add parsed spec Result {
+60 silly cache add   raw: 'chai-http@^3.0.0',
+60 silly cache add   scope: null,
+60 silly cache add   escapedName: 'chai-http',
+60 silly cache add   name: 'chai-http',
+60 silly cache add   rawSpec: '^3.0.0',
+60 silly cache add   spec: '>=3.0.0 <4.0.0',
+60 silly cache add   type: 'range' }
+61 silly addNamed chai-http@>=3.0.0 <4.0.0
+62 verbose addNamed ">=3.0.0 <4.0.0" is a valid semver range for chai-http
+63 silly addNameRange { name: 'chai-http', range: '>=3.0.0 <4.0.0', hasData: false }
+64 silly mapToRegistry name chai-http
+65 silly mapToRegistry using default registry
+66 silly mapToRegistry registry https://registry.npmjs.org/
+67 silly mapToRegistry data Result {
+67 silly mapToRegistry   raw: 'chai-http',
+67 silly mapToRegistry   scope: null,
+67 silly mapToRegistry   escapedName: 'chai-http',
+67 silly mapToRegistry   name: 'chai-http',
+67 silly mapToRegistry   rawSpec: '',
+67 silly mapToRegistry   spec: 'latest',
+67 silly mapToRegistry   type: 'tag' }
+68 silly mapToRegistry uri https://registry.npmjs.org/chai-http
+69 verbose addNameRange registry:https://registry.npmjs.org/chai-http not in flight; fetching
+70 verbose get https://registry.npmjs.org/chai-http not expired, no request
+71 silly addNameRange number 2 { name: 'chai-http', range: '>=3.0.0 <4.0.0', hasData: true }
+72 silly addNameRange versions [ 'chai-http',
+72 silly addNameRange   [ '0.1.0',
+72 silly addNameRange     '0.2.0',
+72 silly addNameRange     '0.3.0',
+72 silly addNameRange     '0.4.0',
+72 silly addNameRange     '0.5.0',
+72 silly addNameRange     '1.0.0',
+72 silly addNameRange     '2.0.0',
+72 silly addNameRange     '2.0.1',
+72 silly addNameRange     '3.0.0' ] ]
+73 silly addNamed chai-http@3.0.0
+74 verbose addNamed "3.0.0" is a plain semver version for chai-http
+75 silly mapToRegistry name chai-http
+76 silly mapToRegistry using default registry
+77 silly mapToRegistry registry https://registry.npmjs.org/
+78 silly mapToRegistry data Result {
+78 silly mapToRegistry   raw: 'chai-http',
+78 silly mapToRegistry   scope: null,
+78 silly mapToRegistry   escapedName: 'chai-http',
+78 silly mapToRegistry   name: 'chai-http',
+78 silly mapToRegistry   rawSpec: '',
+78 silly mapToRegistry   spec: 'latest',
+78 silly mapToRegistry   type: 'tag' }
+79 silly mapToRegistry uri https://registry.npmjs.org/chai-http
+80 verbose addRemoteTarball https://registry.npmjs.org/chai-http/-/chai-http-3.0.0.tgz not in flight; adding
+81 verbose addRemoteTarball [ 'https://registry.npmjs.org/chai-http/-/chai-http-3.0.0.tgz',
+81 verbose addRemoteTarball   '5460d8036e1f1a12b0b5b5cbd529e6dc1d31eb4b' ]
+82 http 200 https://registry.npmjs.org/chai
+83 verbose headers { server: 'nginx/1.10.3',
+83 verbose headers   'content-type': 'application/json',
+83 verbose headers   'last-modified': 'Tue, 04 Jul 2017 07:18:16 GMT',
+83 verbose headers   etag: 'W/"595b4138-189d5"',
+83 verbose headers   'content-encoding': 'gzip',
+83 verbose headers   'cache-control': 'max-age=300',
+83 verbose headers   'content-length': '11486',
+83 verbose headers   'accept-ranges': 'bytes',
+83 verbose headers   date: 'Mon, 10 Jul 2017 18:14:05 GMT',
+83 verbose headers   via: '1.1 varnish',
+83 verbose headers   age: '122',
+83 verbose headers   connection: 'keep-alive',
+83 verbose headers   'x-served-by': 'cache-sjc3621-SJC',
+83 verbose headers   'x-cache': 'HIT',
+83 verbose headers   'x-cache-hits': '1',
+83 verbose headers   'x-timer': 'S1499710445.370659,VS0,VE1',
+83 verbose headers   vary: 'Accept-Encoding, Accept' }
+84 silly get cb [ 200,
+84 silly get   { server: 'nginx/1.10.3',
+84 silly get     'content-type': 'application/json',
+84 silly get     'last-modified': 'Tue, 04 Jul 2017 07:18:16 GMT',
+84 silly get     etag: 'W/"595b4138-189d5"',
+84 silly get     'content-encoding': 'gzip',
+84 silly get     'cache-control': 'max-age=300',
+84 silly get     'content-length': '11486',
+84 silly get     'accept-ranges': 'bytes',
+84 silly get     date: 'Mon, 10 Jul 2017 18:14:05 GMT',
+84 silly get     via: '1.1 varnish',
+84 silly get     age: '122',
+84 silly get     connection: 'keep-alive',
+84 silly get     'x-served-by': 'cache-sjc3621-SJC',
+84 silly get     'x-cache': 'HIT',
+84 silly get     'x-cache-hits': '1',
+84 silly get     'x-timer': 'S1499710445.370659,VS0,VE1',
+84 silly get     vary: 'Accept-Encoding, Accept' } ]
+85 verbose get saving chai to C:\Users\FernandoA\AppData\Roaming\npm-cache\registry.npmjs.org\chai\.cache.json
+86 verbose correctMkdir C:\Users\FernandoA\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+87 info retry fetch attempt 1 at 11:14:07 AM
+88 info attempt registry request try #1 at 11:14:07 AM
+89 http fetch GET https://registry.npmjs.org/chai-http/-/chai-http-3.0.0.tgz
+90 silly resolveWithNewModule chai@4.0.2 checking installable status
+91 silly cache add args [ 'chai@^4.0.2', null ]
+92 verbose cache add spec chai@^4.0.2
+93 silly cache add parsed spec Result {
+93 silly cache add   raw: 'chai@^4.0.2',
+93 silly cache add   scope: null,
+93 silly cache add   escapedName: 'chai',
+93 silly cache add   name: 'chai',
+93 silly cache add   rawSpec: '^4.0.2',
+93 silly cache add   spec: '>=4.0.2 <5.0.0',
+93 silly cache add   type: 'range' }
+94 silly addNamed chai@>=4.0.2 <5.0.0
+95 verbose addNamed ">=4.0.2 <5.0.0" is a valid semver range for chai
+96 silly addNameRange { name: 'chai', range: '>=4.0.2 <5.0.0', hasData: false }
+97 silly mapToRegistry name chai
+98 silly mapToRegistry using default registry
+99 silly mapToRegistry registry https://registry.npmjs.org/
+100 silly mapToRegistry data Result {
+100 silly mapToRegistry   raw: 'chai',
+100 silly mapToRegistry   scope: null,
+100 silly mapToRegistry   escapedName: 'chai',
+100 silly mapToRegistry   name: 'chai',
+100 silly mapToRegistry   rawSpec: '',
+100 silly mapToRegistry   spec: 'latest',
+100 silly mapToRegistry   type: 'tag' }
+101 silly mapToRegistry uri https://registry.npmjs.org/chai
+102 verbose addNameRange registry:https://registry.npmjs.org/chai not in flight; fetching
+103 verbose get https://registry.npmjs.org/chai not expired, no request
+104 silly addNameRange number 2 { name: 'chai', range: '>=4.0.2 <5.0.0', hasData: true }
+105 silly addNameRange versions [ 'chai',
+105 silly addNameRange   [ '0.0.1',
+105 silly addNameRange     '0.0.2',
+105 silly addNameRange     '0.1.0',
+105 silly addNameRange     '0.1.1',
+105 silly addNameRange     '0.1.2',
+105 silly addNameRange     '0.1.3',
+105 silly addNameRange     '0.1.4',
+105 silly addNameRange     '0.1.5',
+105 silly addNameRange     '0.1.6',
+105 silly addNameRange     '0.1.7',
+105 silly addNameRange     '0.2.0',
+105 silly addNameRange     '0.2.1',
+105 silly addNameRange     '0.2.2',
+105 silly addNameRange     '0.2.3',
+105 silly addNameRange     '0.2.4',
+105 silly addNameRange     '0.3.0',
+105 silly addNameRange     '0.3.1',
+105 silly addNameRange     '0.3.2',
+105 silly addNameRange     '0.3.3',
+105 silly addNameRange     '0.3.4',
+105 silly addNameRange     '0.4.0',
+105 silly addNameRange     '0.4.1',
+105 silly addNameRange     '0.4.2',
+105 silly addNameRange     '0.5.0',
+105 silly addNameRange     '0.5.1',
+105 silly addNameRange     '0.5.2',
+105 silly addNameRange     '0.5.3',
+105 silly addNameRange     '1.0.0',
+105 silly addNameRange     '1.0.1',
+105 silly addNameRange     '1.0.2',
+105 silly addNameRange     '1.0.3',
+105 silly addNameRange     '1.0.4',
+105 silly addNameRange     '1.1.0',
+105 silly addNameRange     '1.1.1',
+105 silly addNameRange     '1.2.0',
+105 silly addNameRange     '1.3.0',
+105 silly addNameRange     '1.4.0',
+105 silly addNameRange     '1.4.1',
+105 silly addNameRange     '1.4.2',
+105 silly addNameRange     '1.5.0',
+105 silly addNameRange     '1.6.0',
+105 silly addNameRange     '1.6.1',
+105 silly addNameRange     '1.7.0',
+105 silly addNameRange     '1.7.1',
+105 silly addNameRange     '1.7.2',
+105 silly addNameRange     '1.8.0',
+105 silly addNameRange     '1.8.1',
+105 silly addNameRange     '1.9.0',
+105 silly addNameRange     '1.9.1',
+105 silly addNameRange     '1.9.2',
+105 silly addNameRange     '1.10.0',
+105 silly addNameRange     '2.0.0',
+105 silly addNameRange     '2.1.0',
+105 silly addNameRange     '2.1.1',
+105 silly addNameRange     '2.1.2',
+105 silly addNameRange     '2.2.0',
+105 silly addNameRange     '2.3.0',
+105 silly addNameRange     '3.0.0',
+105 silly addNameRange     '3.1.0',
+105 silly addNameRange     '3.2.0',
+105 silly addNameRange     '3.3.0',
+105 silly addNameRange     '3.4.0',
+105 silly addNameRange     '3.4.1',
+105 silly addNameRange     '3.5.0',
+105 silly addNameRange     '4.0.0-canary.1',
+105 silly addNameRange     '4.0.0-canary.2',
+105 silly addNameRange     '4.0.0',
+105 silly addNameRange     '4.0.1',
+105 silly addNameRange     '4.0.2' ] ]
+106 silly addNamed chai@4.0.2
+107 verbose addNamed "4.0.2" is a plain semver version for chai
+108 silly mapToRegistry name chai
+109 silly mapToRegistry using default registry
+110 silly mapToRegistry registry https://registry.npmjs.org/
+111 silly mapToRegistry data Result {
+111 silly mapToRegistry   raw: 'chai',
+111 silly mapToRegistry   scope: null,
+111 silly mapToRegistry   escapedName: 'chai',
+111 silly mapToRegistry   name: 'chai',
+111 silly mapToRegistry   rawSpec: '',
+111 silly mapToRegistry   spec: 'latest',
+111 silly mapToRegistry   type: 'tag' }
+112 silly mapToRegistry uri https://registry.npmjs.org/chai
+113 verbose addRemoteTarball https://registry.npmjs.org/chai/-/chai-4.0.2.tgz not in flight; adding
+114 verbose addRemoteTarball [ 'https://registry.npmjs.org/chai/-/chai-4.0.2.tgz',
+114 verbose addRemoteTarball   '2f7327c4de6f385dd7787999e2ab02697a32b83b' ]
+115 info retry fetch attempt 1 at 11:14:07 AM
+116 info attempt registry request try #1 at 11:14:07 AM
+117 http fetch GET https://registry.npmjs.org/chai/-/chai-4.0.2.tgz
+118 http fetch 200 https://registry.npmjs.org/chai-http/-/chai-http-3.0.0.tgz
+119 http fetch 200 https://registry.npmjs.org/chai/-/chai-4.0.2.tgz
+120 silly fetchAndShaCheck shasum 5460d8036e1f1a12b0b5b5cbd529e6dc1d31eb4b
+121 verbose addTmpTarball C:\Users\FERNAN~1\AppData\Local\Temp\npm-7564-efc9668d\registry.npmjs.org\chai-http\-\chai-http-3.0.0.tgz not in flight; adding
+122 verbose addTmpTarball already have metadata; skipping unpack for chai-http@3.0.0
+123 verbose correctMkdir C:\Users\FernandoA\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+124 silly cache afterAdd chai-http@3.0.0
+125 verbose afterAdd C:\Users\FernandoA\AppData\Roaming\npm-cache\chai-http\3.0.0\package\package.json not in flight; writing
+126 verbose correctMkdir C:\Users\FernandoA\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+127 verbose afterAdd C:\Users\FernandoA\AppData\Roaming\npm-cache\chai-http\3.0.0\package\package.json written
+128 silly fetchAndShaCheck shasum 2f7327c4de6f385dd7787999e2ab02697a32b83b
+129 verbose addTmpTarball C:\Users\FERNAN~1\AppData\Local\Temp\npm-7564-efc9668d\registry.npmjs.org\chai\-\chai-4.0.2.tgz not in flight; adding
+130 verbose addTmpTarball already have metadata; skipping unpack for chai@4.0.2
+131 verbose correctMkdir C:\Users\FernandoA\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+132 silly cache afterAdd chai@4.0.2
+133 verbose afterAdd C:\Users\FernandoA\AppData\Roaming\npm-cache\chai\4.0.2\package\package.json not in flight; writing
+134 verbose correctMkdir C:\Users\FernandoA\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+135 verbose afterAdd C:\Users\FernandoA\AppData\Roaming\npm-cache\chai\4.0.2\package\package.json written
+136 http 404 https://registry.npmjs.org/chai-as-promise
+137 verbose headers { 'content-type': 'application/json',
+137 verbose headers   'cache-control': 'max-age=0',
+137 verbose headers   'content-length': '2',
+137 verbose headers   'accept-ranges': 'bytes',
+137 verbose headers   date: 'Mon, 10 Jul 2017 18:14:05 GMT',
+137 verbose headers   via: '1.1 varnish',
+137 verbose headers   age: '0',
+137 verbose headers   connection: 'keep-alive',
+137 verbose headers   'x-served-by': 'cache-sjc3625-SJC',
+137 verbose headers   'x-cache': 'MISS',
+137 verbose headers   'x-cache-hits': '0',
+137 verbose headers   'x-timer': 'S1499710445.371072,VS0,VE340',
+137 verbose headers   vary: 'Accept-Encoding' }
+138 silly get cb [ 404,
+138 silly get   { 'content-type': 'application/json',
+138 silly get     'cache-control': 'max-age=0',
+138 silly get     'content-length': '2',
+138 silly get     'accept-ranges': 'bytes',
+138 silly get     date: 'Mon, 10 Jul 2017 18:14:05 GMT',
+138 silly get     via: '1.1 varnish',
+138 silly get     age: '0',
+138 silly get     connection: 'keep-alive',
+138 silly get     'x-served-by': 'cache-sjc3625-SJC',
+138 silly get     'x-cache': 'MISS',
+138 silly get     'x-cache-hits': '0',
+138 silly get     'x-timer': 'S1499710445.371072,VS0,VE340',
+138 silly get     vary: 'Accept-Encoding' } ]
+139 silly fetchPackageMetaData Error: Registry returned 404 for GET on https://registry.npmjs.org/chai-as-promise
+139 silly fetchPackageMetaData     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+139 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+139 silly fetchPackageMetaData     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+139 silly fetchPackageMetaData     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+139 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+139 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+139 silly fetchPackageMetaData     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1044:10)
+139 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+139 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+139 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:965:12)
+139 silly fetchPackageMetaData  error for chai-as-promise@^7.1.1 { Error: Registry returned 404 for GET on https://registry.npmjs.org/chai-as-promise
+139 silly fetchPackageMetaData     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+139 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+139 silly fetchPackageMetaData     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+139 silly fetchPackageMetaData     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+139 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+139 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+139 silly fetchPackageMetaData     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1044:10)
+139 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+139 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+139 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:965:12) pkgid: 'chai-as-promise', statusCode: 404, code: 'E404' }
+140 silly rollbackFailedOptional Starting
+141 silly rollbackFailedOptional Finishing
+142 silly runTopLevelLifecycles Finishing
+143 silly install printInstalled
+144 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/chai-as-promise
+144 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+144 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+144 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+144 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+144 verbose stack     at emitTwo (events.js:106:13)
+144 verbose stack     at Request.emit (events.js:191:7)
+144 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1044:10)
+144 verbose stack     at emitOne (events.js:96:13)
+144 verbose stack     at Request.emit (events.js:188:7)
+144 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:965:12)
+145 verbose statusCode 404
+146 verbose pkgid chai-as-promise
+147 verbose cwd C:\Code\nodejs\outpatient\outpatient-service\tests
+148 error Windows_NT 10.0.15063
+149 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+150 error node v6.9.1
+151 error npm  v3.10.8
+152 error code E404
+153 error 404 Registry returned 404 for GET on https://registry.npmjs.org/chai-as-promise
+154 error 404
+155 error 404 'chai-as-promise' is not in the npm registry.
+156 error 404 You should bug the author to publish it (or use the name yourself!)
+157 error 404 It was specified as a dependency of 'outpatient-main'
+158 error 404 Note that you can also install from a
+159 error 404 tarball, folder, http url, or git url.
+160 verbose exit [ 1, true ]

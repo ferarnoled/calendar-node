@@ -33,29 +33,32 @@ routes.get('/locations', (req,res,next) => {
 
 // CALENDAR
 routes.get('/cases/:caseId/events/:eventId', (req,res,next) => {
+    return resolveReturnPromise(
+        calendarModel.getEventByEventId(req.params.eventId)
+        , req,res,next);
+    /*
     calendarModel.getEventByEventId(req.params.eventId).then(
         function(result){
-            res.send(result);
+            res.send(genericResponse(false, result));
         },
         function(error){
-            next(error);
+            next(genericResponse(true, error));
         }
     );
+    */
 });
 
 routes.get('/cases/:caseId/events', (req,res,next) => {
-    console.log(req.params);
-    calendarModel.getEventsByCaseId(req.params).then(
-        function(result){
-            res.send(result);
-        },
-        function(error){
-            next(error);
-        }
-    );
+    return resolveReturnPromise(
+        calendarModel.getEventsByCaseId(req.params)
+        , req,res,next);
 });
 
 routes.post('/cases/:caseId/events', (req, res, next) => {
+    return resolveReturnPromise(
+        calendarModel.saveEvent(req.body, req.params.caseId)
+        , req,res,next);
+    /*
     calendarModel.saveEvent(req.body, req.params.caseId).then(
         function(result) {
             res.send(result);
@@ -64,28 +67,19 @@ routes.post('/cases/:caseId/events', (req, res, next) => {
             next(error);
         }
     );
+    */
 });
 
 routes.put('/cases/:caseId/events/:eventId', (req, res, next) => {
-    calendarModel.updateEvent(req.body, req.params.caseId, req.params.eventId).then(
-        function(result) {
-            res.send(result);
-        },
-        function(error) {
-            next(error);
-        }
-    );
+    return resolveReturnPromise(
+        calendarModel.updateEvent(req.body, req.params.caseId, req.params.eventId)
+        , req,res,next);
 });
 
 routes.delete('/cases/:caseId/events/:eventId', (req, res, next) => {
-    calendarModel.deleteEvent(req.params.eventId).then(
-        function(result) {
-            res.send(result);
-        },
-        function(error) {
-            next(error);
-        }
-    );
+    return resolveReturnPromise(
+        calendarModel.deleteEvent(req.params.eventId)
+        , req,res,next);
 });
 
 //chat
@@ -98,5 +92,28 @@ routes.get('/chat/sendbird', (req, res, next) => {
     //console.log();
     res.sendFile(resolve('views/sendbird/index.html'));
 })
+
+function genericResponse(isError, result) {
+    if (result && result.success != undefined && result.error != undefined && result.error != undefined)
+        return result;
+    var ret = {
+        success: !isError,
+        status: !isError ? 200 : 422,
+        error: isError ? result: null,
+        data: !isError ? result: null
+    }
+    return ret;
+}
+
+function resolveReturnPromise(func, req,res,next) {
+    func.then(
+        function(result){
+            res.send(genericResponse(false, result));
+        },
+        function(error){
+            next(genericResponse(true, error));
+        }
+    );
+}
 
 module.exports = routes;

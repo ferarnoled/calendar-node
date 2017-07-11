@@ -9,3 +9,9 @@ require('../www/www').start({
     serviceName: 'outpatient-main',
     routes: routes
 });
+
+/*
+var start = require('../www/appLite');
+
+module.exports = start;
+*/
