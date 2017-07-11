@@ -158,6 +158,7 @@ class CalendarRepo {
     }
 
     getLocationId(locationObj) {
+        console.log("getLocationId.");
         return knex('locations').where({
             name: locationObj.location_name,
             latitude: locationObj.latitude,
@@ -166,12 +167,14 @@ class CalendarRepo {
     }
 
     getEventTypeId(event) {
+        console.log("getEventTypeId.");
         return knex('cal.event_types').where({
             name: event.event_type_name
         }).select('event_type_id');
     }
 
     getTransportationId(event) {
+        console.log("getTransportationId.");
         return knex('cal.transportations').where({
             name: event.transportation
         }).select('transportation_id');
