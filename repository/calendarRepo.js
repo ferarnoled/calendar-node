@@ -230,7 +230,20 @@ class CalendarRepo {
                 });
         }
         else {
-            promise = Promise.resolve(event.location.location_id);
+            promise = knex('locations').transacting(trx)
+                .where('location_id', event.location.location_id)
+                .update({
+                    address: event.location.address,
+                    name: event.location.location_name,
+                    latitude: event.location.latitude,
+                    longitude: event.location.longitude,
+                    phone: event.location.phone
+                }).then(function(resp) {
+                    return event.location.location_id;
+                }).catch((err) => {
+                    reject(err);
+                });
+            //promise = Promise.resolve(event.location.location_id);
         }
         return promise;
     }
