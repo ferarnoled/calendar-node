@@ -150,6 +150,8 @@ class CalendarRepo {
                         console.error(err);
                     });
                     */
+        }).catch((err) => {
+            return Promise.reject(err);
         });
     }
 
@@ -193,6 +195,8 @@ class CalendarRepo {
                     is_active: '1'
                 }).then(function(resp) {
                     return resp[0];
+                }).catch((err) => {
+                    reject(err);
                 });
         }
         else {
@@ -221,6 +225,8 @@ class CalendarRepo {
                     phone: event.location.phone
                 }).then(function(resp) {
                     return resp[0];
+                }).catch((err) => {
+                    reject(err);
                 });
         }
         else {

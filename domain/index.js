@@ -18,7 +18,8 @@ var knex = require('knex')({
     user : dbconfig.username,
     password : dbconfig.password,
     database : dbconfig.database
-  }
+  },
+  useNullAsDefault : false
 });
 
 module.exports = knex;

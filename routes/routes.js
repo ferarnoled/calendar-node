@@ -66,7 +66,9 @@ routes.post('/cases/:caseId/events', (req, res, next) => {
         function(error) {
             next(error);
         }
-    );
+    ).catch((err) => {
+        next(err);
+    });
     */
 });
 
