@@ -74,17 +74,11 @@ class CalendarRepo {
                     if (item.length >= 3 && item[2] && item[2].length > 0)
                         event.transportation_id = item[2] ? item[2].transportation_id : null;
                     console.log("upsertEvent: queries done.");
-                    //2) Validations
-                    /*
-                    if (event.event_type_id === undefined)
-                        throw "The event type does not exist.";
-                    */
                     //3) Open transaction
                     return knex.transaction(function (trx) {
                         //4) Insert event_type if not exists, insert location if not exists
                         Promise.all([_this.insertEventTypeIfNew(event, trx)
                             , _this.insertLocationIfNew(event, trx)]).then(result => {
-                                //console.log("result:" + JSON.stringify(result, null, 4));
                                 event.event_type_id = result[0];
                                 event.location.location_id = result[1];
 
@@ -200,7 +194,6 @@ class CalendarRepo {
                 });
         }
         else {
-            //console.log("insertEventTypeIfNew:" + event.event_type_id);
             promise = Promise.resolve(event.event_type_id);
         }
         return promise;
@@ -243,7 +236,6 @@ class CalendarRepo {
                 }).catch((err) => {
                     reject(err);
                 });
-            //promise = Promise.resolve(event.location.location_id);
         }
         return promise;
     }

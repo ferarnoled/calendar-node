@@ -2,6 +2,7 @@
  * Created by FernandoA on 4/15/2017.
  */
 "use strict";
+
 const routes = require('express').Router();
 const calendarModel = require('../models/calendarModel');
 const resolve = require('path').resolve;
@@ -17,35 +18,11 @@ routes.get('/eventtypes', (req,res,next) => {
     );
 });
 
-
-/*
-routes.get('/locations', (req,res,next) => {
-    calendarModel.getLocations(req.query).then(
-        function(result){
-            res.send(result);
-        },
-        function(error){
-            next(error);
-        }
-    );
-});
-*/
-
 // CALENDAR
 routes.get('/cases/:caseId/events/:eventId', (req,res,next) => {
     return resolveReturnPromise(
         calendarModel.getEventByEventId(req.params.eventId)
         , req,res,next);
-    /*
-    calendarModel.getEventByEventId(req.params.eventId).then(
-        function(result){
-            res.send(genericResponse(false, result));
-        },
-        function(error){
-            next(genericResponse(true, error));
-        }
-    );
-    */
 });
 
 routes.get('/cases/:caseId/events', (req,res,next) => {
@@ -83,17 +60,6 @@ routes.delete('/cases/:caseId/events/:eventId', (req, res, next) => {
         calendarModel.deleteEvent(req.params.eventId)
         , req,res,next);
 });
-
-//chat
-routes.get('/chat', (req, res, next) => {
-    //console.log();
-    res.sendFile(resolve('views/index.html'));
-})
-
-routes.get('/chat/sendbird', (req, res, next) => {
-    //console.log();
-    res.sendFile(resolve('views/sendbird/index.html'));
-})
 
 function genericResponse(isError, result) {
     if (result && result.success != undefined && result.error != undefined && result.error != undefined)
