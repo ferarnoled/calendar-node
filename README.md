@@ -12,15 +12,15 @@ is not sent it will throw a DB error (not very descriptive). If there is an erro
 * Authentication.
 
 ## Folder structure (most important folders)
--- **bin** start.js file to start the app (npm start)  
--- **config** configuration files
--- **domain** For now only index.js used to connect to the DB
--- **logger** winston logger
--- **models** models/business logic
--- **repository** Repo to PostgreSQL
--- **routes**
--- **test**
--- **scripts** Scripts to set up the DB
+-- **bin** start.js file to start the app (npm start) <br />
+-- **config** configuration files <br />
+-- **domain** For now only index.js used to connect to the DB <br />
+-- **logger** winston logger <br />
+-- **models** models/business logic <br />
+-- **repository** Repo to PostgreSQL <br />
+-- **routes** <br />
+-- **test** <br />
+-- **scripts** Scripts to set up the DB <br />
 -- **www** app.js and www.js files. Set up express server, add middleware and run it.
 
 ## Integration steps
