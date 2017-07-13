@@ -3,8 +3,11 @@
 Calendar backend project for written in nodejs. Model works for an ios app.
 
 ## Scope
-The project provides CRUD operation for and event (calendar) based on specs. The repository is a PostgreSQL.
-There are Unit tests for all endpoints.
+The project provides CRUD operation for and event (calendar) based on specs. The repository is PostgreSQL.
+There are Unit tests for all endpoints. All the response are in the format:
+{success: {boolean}, error: {Object}, data: {Object}}
+with data having the required information.
+Comments are in the calendarModel and calendarRepo files.
 
 ### TODOs
 * There are no validations related to schema structure required for the APIs. If a field required to save an event
@@ -25,11 +28,24 @@ is not sent it will throw a DB error (not very descriptive). If there is an erro
 
 ## Integration steps
 
-1) Execute scripts provided in /scripts folder
-2) Add new modules based on package.json file if needed.
-3) Attach middleware. Probably the only module needed is **json-inflector**. See app.js lines 39-44.
-4) Add endpoints from the routes.js.
-5) Add models/calendarModel.js file and repository/calendarRepo.js file. If you have a an existing connection pool
+1) Execute scripts provided in /scripts folder. There might be permission issues depending on the user. Commenting this
+line might help:
+```
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+```
+
+2) Make sure the DB has the timezone set to UTC. If using Amazon RDS use this command:
+```
+ ALTER USER postgres SET timezone='UTC' ;
+```
+or check these links:
+https://stackoverflow.com/questions/11779293/how-to-set-timezone-for-postgres-psql
+https://stackoverflow.com/questions/6663765/postgres-default-timezone
+
+3) Add new modules based on package.json file if needed.
+4) Attach middleware. Probably the only module needed is **json-inflector**. See app.js lines 39-44.
+5) Add endpoints from the routes.js.
+6) Add models/calendarModel.js file and repository/calendarRepo.js file. If you have a an existing connection pool
 to knex change the reference in calendarRepo.js, otherwise also include domain/index.js.
 
 ## Running the tests
