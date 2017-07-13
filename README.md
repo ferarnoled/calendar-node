@@ -9,8 +9,7 @@ There are Unit tests for all endpoints.
 ### TODOs
 * There are no validations related to schema structure required for the APIs. If a field required to save an event
 is not sent it will throw a DB error (not very descriptive). If there is an error it thows a 422 HTTP code.
-* Authentication needs to be done when doing the integration.
-
+* Authentication.
 
 ## Folder structure (most important folders)
 -- **bin** start.js file to start the app (npm start)
