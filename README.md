@@ -12,7 +12,7 @@ is not sent it will throw a DB error (not very descriptive). If there is an erro
 * Authentication.
 
 ## Folder structure (most important folders)
--- **bin** start.js file to start the app (npm start)
+-- **bin** start.js file to start the app (npm start)  
 -- **config** configuration files
 -- **domain** For now only index.js used to connect to the DB
 -- **logger** winston logger
