@@ -1,7 +1,7 @@
 /**
  * Created by FernandoA on 4/16/2017.
  */
-"use strict"
+"use strict";
 
 const calendarRepo = require('../repository/calendarRepo');
 //let check = require('validator').check();

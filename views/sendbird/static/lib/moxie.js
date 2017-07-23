@@ -858,7 +858,7 @@ define("moxie/core/utils/Env", [
 
 
 	    ///////////////
-	    // Map helper
+	    // Map helpers
 	    //////////////
 
 
